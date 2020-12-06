@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VetClinic.DAL.Entities;
 
 namespace VetClinic.DAL
@@ -24,6 +25,11 @@ namespace VetClinic.DAL
                 .HasMany(d => d.Appointments)
                 .WithOne(d => d.Doctor)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder
+                .Entity<Status>()
+                .Property(e => e.StatusName)
+                .HasConversion(new EnumToStringConverter<StatusName>());
         }
     }
 }
