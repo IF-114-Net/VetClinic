@@ -1,4 +1,4 @@
-﻿using IdentityModel;
+using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
@@ -12,6 +12,8 @@ namespace IdentityServerRoles
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResources.Email(),
+                new IdentityResources.Phone(),
             };
 
         public static IEnumerable<ApiResource> ApiResources =>
@@ -43,10 +45,7 @@ namespace IdentityServerRoles
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("scope1"),
-                new ApiScope("scope2"),
                 new ApiScope("ApiOne"),
-                new ApiScope("offline_access"),
             };
 
         public static IEnumerable<Client> Clients =>
@@ -85,8 +84,10 @@ namespace IdentityServerRoles
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.Phone,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
                         "ApiOne",
-                        "offline_access",
                     },
 
                     RequireConsent = false,
