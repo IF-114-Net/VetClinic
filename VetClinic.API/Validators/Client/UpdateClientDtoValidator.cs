@@ -8,22 +8,22 @@ namespace VetClinic.API.Validators.Client
     {
         public UpdateClientDtoValidator()
         {
-            RuleFor(user => user.UserName).NotEmpty().WithMessage("Username cannot be empty")
+            RuleFor(c => c.UserName).NotEmpty().WithMessage("Username cannot be empty")
                 .MaximumLength(50).WithMessage("Username cannot be more than 50 symbols");
 
-            RuleFor(user => user.FirstName).NotEmpty().WithMessage("FirstName cannot be empty")
+            RuleFor(c => c.FirstName).NotEmpty().WithMessage("FirstName cannot be empty")
                 .MaximumLength(30).WithMessage("FirstName cannot be more than 30 symbols");
 
-            RuleFor(user => user.LastName).NotEmpty().WithMessage("SecondName cannot be empty")
+            RuleFor(c => c.LastName).NotEmpty().WithMessage("SecondName cannot be empty")
                 .MaximumLength(30).WithMessage("SecondName cannot be more than 30 symbols");
 
-            RuleFor(user => user.Email).NotEmpty().WithMessage("Email cannot be empty")
+            RuleFor(c => c.Email).NotEmpty().WithMessage("Email cannot be empty")
                 .EmailAddress(EmailValidationMode.AspNetCoreCompatible).WithMessage("Email format is incorrect")
                 .MaximumLength(50).WithMessage("Email cannot be longer than 50 symbols");
 
-            RuleFor(user => user.PhoneNumber).NotEmpty().WithMessage("Phone cannot be empty")
+            RuleFor(c => c.PhoneNumber).NotEmpty().WithMessage("Phone cannot be empty")
                 .MaximumLength(12).WithMessage("Phone number cannot be longer than 12 numbers")
-                .Matches("^[0-9]").WithMessage("Phone number can contain numbers");
+                .Matches("^[0-9]{12}").WithMessage("Phone number must contain 12 numbers");
         }
     }
 }
